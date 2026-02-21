@@ -1,0 +1,61 @@
+﻿@model Library_Web_App_ASP.NET_Core_MVC_.Models.Library
+
+<div class="container">
+
+    <h1>Library Management System</h1>
+
+    <h2>Add a Book</h2>
+    <form method="post" asp-action="AddBook">
+        <input type="text" name="title" placeholder="Book Title" required />
+        <input type="text" name="author" placeholder="Author" required />
+        <button type="submit" class="add-btn">Add Book</button>
+    </form>
+
+    <h2>Books</h2>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var book in Model.Books)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>
+                    @if (book.IsBorrowed)
+                    {
+                        <span class="status-borrowed">Borrowed</span>
+                    }
+                    else
+                    {
+                        <span class="status-available">Available</span>
+                    }
+                </td>
+                <td>
+                    @if (!book.IsBorrowed)
+                    {
+                        <form method="post" asp-action="BorrowBook" style="display:inline">
+                            <input type="hidden" name="title" value="@book.Title" />
+                            <button type="submit" class="borrow-btn">Borrow</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form method="post" asp-action="ReturnBook" style="display:inline">
+                            <input type="hidden" name="title" value="@book.Title" />
+                            <button type="submit" class="return-btn">Return</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
