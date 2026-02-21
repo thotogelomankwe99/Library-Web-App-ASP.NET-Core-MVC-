@@ -1,7 +1,5 @@
 # Library-Web-App(ASP.NET Core MVC)
 
-# Library-Web-App(ASP.NET Core MVC)
-
 # Library Management System
 
   A web-based Library Management System built using ASP.NET Core MVC and C#, designed to demonstrate core Object-Oriented Programming principles and structured MVC architecture.
